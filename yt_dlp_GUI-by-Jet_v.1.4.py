@@ -21,17 +21,21 @@ yt-dlp Jet's GUI 改进：
 
 """
 升级记录：
-替代youtube-dl.exe的yt-dlp的GUI界面工具。
-只需复制youtube的链接，就可选择下载字幕、视频或音频。
 
-2022-02-17:
--用Demon解决下载时卡的感觉
-
-2023-01-24: 修改编码格式为GBK,就能正常显示中文目录或下载的文件名了！
+2023-01-24: 
+-修改编码格式为GBK,解决问题：下载时不能正常显示中文目录或下载的文件名！
     # line = line.decode(errors='replace' if (sys.version_info) < (3, 5) else 'backslashreplace').rstrip()
     # line = line.decode('utf-8', errors='replace' if (sys.version_info) < (3, 5) else 'backslashreplace').rstrip()
     line = line.decode('GBK', errors='replace' if (sys.version_info) < (3, 5) else 'backslashreplace').rstrip()
-       
+
+2022-10-XX:
+-添加URL复制按钮，只需复制youtube的链接，就可选择下载字幕、视频或音频。
+
+2022-02-17:
+-用Demon解决下载时卡的感觉       
+
+2021-XX-XX:
+替代youtube-dl.exe的yt-dlp的GUI界面工具。
 """
 #youtube_executable = 'path/to/youtube-dl'
 # Jet modified 
