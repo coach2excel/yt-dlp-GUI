@@ -10,7 +10,7 @@ import signal
 import pyperclip #使用Windows粘贴板 2022-11-21 adds
 import io
 import sys
-
+# 注意：需要安装ffmpeg, 并把exe所在路径添加到环境变量中，才能进行音频和视频的合并！
 """
 TODO List：
 yt-dlp Jet's GUI 改进：
