@@ -111,10 +111,12 @@ def the_thread(window: sg.Window, sp: subprocess.Popen):
         skip = False
         print(line)
         #print(convert(line))  # 会有NoneType异常！
-        window.write_event_value('-THREAD-', (sp, line))
+        # 每行信息都即时输出到GUI，刷新输出的显示
+        window.write_event_value('-THREAD-', (sp, line))  # 向GUI传递子进程参数
         window.Refresh() if window else None
-        
-    window.write_event_value('-THREAD-', (sp, '===THREAD DONE==='))
+    # 线程结束时向GUI发出信号
+    line = '===THREAD DONE==='    
+    window.write_event_value('-THREAD-', (sp, line))
     
 
 # 用守护线程防止下载时卡死：
@@ -567,9 +569,16 @@ def DownloadGUI():
         #与线程（会调用进程）对应的事件，输出相应信息
         elif event == '-THREAD-':
             #print('in event -THREAD-')
+            
             thread_sp = values['-THREAD-'][0]
+            # 上一行对应 the_thread中的代码： window.write_event_value('-THREAD-', (sp, line))  # 向GUI传递子进程参数
+            # 获得传递过来的第一个参数：子进程sp
+            
             line = values['-THREAD-'][1]
+            # 获得传递过来的第二个参数：line , 即子进行即时输出的一行信息
             sg.cprint(line)
+            #  to "print" text to any multiline element in any PySimpleGUI window.
+            
             if line == '===THREAD DONE===':
                 sg.cprint(f'Completed', c='white on green')
                 
